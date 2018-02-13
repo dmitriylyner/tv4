@@ -92,12 +92,7 @@ function ValidationError(code, params, dataPath, schemaPath, subErrors) {
 	var err = new Error(this.message);
 	this.stack = err.stack || err.stacktrace;
 	if (!this.stack) {
-		try {
-			throw err;
-		}
-		catch(err) {
-			this.stack = err.stack || err.stacktrace;
-		}
+		this.stack = err.stack || err.stacktrace;
 	}
 }
 ValidationError.prototype = Object.create(Error.prototype);

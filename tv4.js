@@ -1461,12 +1461,7 @@ function ValidationError(code, params, dataPath, schemaPath, subErrors) {
 	var err = new Error(this.message);
 	this.stack = err.stack || err.stacktrace;
 	if (!this.stack) {
-		try {
-			throw err;
-		}
-		catch(err) {
-			this.stack = err.stack || err.stacktrace;
-		}
+		this.stack = err.stack || err.stacktrace;
 	}
 }
 ValidationError.prototype = Object.create(Error.prototype);
@@ -1577,15 +1572,6 @@ function createApi(language) {
 			this.error = error;
 			this.missing = context.missing;
 			this.valid = (error === null);
-
-			this.toString = function () {
-				if (this.error) {
-					return this.error.message;
-				} else {
-					return 'Object passed schema validation';
-				}
-			};
-
 			return this.valid;
 		},
 		validateResult: function () {
@@ -1684,3 +1670,4 @@ tv4.tv4 = tv4;
 return tv4; // used by _header.js to globalise.
 
 }));
+//@ sourceMappingURL=tv4.js.map
